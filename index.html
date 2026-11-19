@@ -55,9 +55,9 @@
 
       <button type="button" id="compact-toggle" aria-pressed="false" hidden>Compact view</button>
 
-      <fact-viewer>
-        <p>Facts need JavaScript. Please enable it to see this section.</p>
-      </fact-viewer>
+    <fact-viewer>
+      <noscript><p>Enable JavaScript to load live data for this widget.</p></noscript>
+    </fact-viewer>
     </section>
 
     <section id="contact">
@@ -94,15 +94,47 @@
     <p><a href="#main">Back to top</a></p>
   </footer>
 
-  <script>
-  const toggle = document.querySelector("#compact-toggle");
-  const viewer = document.querySelector("fact-viewer");
-  toggle.hidden = false;
-  toggle.addEventListener("click", () => {
-    const isCompact = viewer.toggleAttribute("compact");
-    toggle.setAttribute("aria-pressed", String(isCompact));
-  });
-  </script>
+<script>
+  (function () {
+    const KEY = "hw5-fact-panel-mode";
+    const viewer = document.querySelector("fact-viewer");
+    const toggle = document.querySelector("#compact-toggle");
+    if (!viewer || !toggle) return;
+
+    // Only "compact" and "expanded" are accepted; anything else uses the default
+    function readMode() {
+      try {
+        const value = localStorage.getItem(KEY);
+        return value === "compact" || value === "expanded" ? value : "expanded";
+      } catch (err) {
+        return "expanded"; // storage blocked: start with the default
+      }
+    }
+
+    function saveMode(mode) {
+      try {
+        localStorage.setItem(KEY, mode);
+      } catch (err) {
+        /* the change already took effect for this page */
+      }
+    }
+
+    // One path for both the control and the restored value
+    function setMode(mode, persist) {
+      const compact = mode === "compact";
+      viewer.toggleAttribute("compact", compact);
+      toggle.setAttribute("aria-pressed", String(compact));
+      if (persist) saveMode(mode); // apply first, save second
+    }
+
+    toggle.hidden = false;
+    setMode(readMode(), false);
+
+    toggle.addEventListener("click", () => {
+      setMode(viewer.hasAttribute("compact") ? "expanded" : "compact", true);
+    });
+  })();
+</script>
 
 </body>
 </html>

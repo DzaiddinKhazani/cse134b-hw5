@@ -511,13 +511,31 @@ body > footer :focus-visible {
 }
 
 /* ===== Fact viewer ===== */
+/* The site passes its theme colors to the component. Because they point at
+   the theme variables, they change automatically when the theme switches. */
+fact-viewer {
+  --fact-background: var(--color-surface);
+  --fact-text: var(--color-text);
+  --fact-muted: var(--color-muted);
+  --fact-border: var(--color-accent-soft);
+  --fact-link: var(--color-link);
+  --fact-error: #9b1c1c;
+}
+
+:root[data-theme="dark"] fact-viewer {
+  --fact-error: #ff9aa8;
+}
+
+/* The component reads those values and supplies a fallback for each one,
+   so it still looks right if the site does not set them. */
 fact-viewer {
   display: block;
   max-width: 36rem;
   margin-top: var(--space);
   padding: calc(var(--space) * 1.5);
-  background: var(--color-surface);
-  border: 1px solid var(--color-accent-soft);
+  color: var(--fact-text, #14212b);
+  background: var(--fact-background, #ffffff);
+  border: 1px solid var(--fact-border, #d6eef2);
   border-radius: var(--radius);
 }
 
@@ -529,11 +547,22 @@ fact-viewer .fact-text {
 
 fact-viewer .fact-details,
 fact-viewer .fact-status {
-  color: var(--color-muted);
+  color: var(--fact-muted, #4a5b68);
+}
+
+fact-viewer .fact-details a {
+  color: var(--fact-link, #084c59);
 }
 
 fact-viewer .fact-status {
   margin: var(--space) 0 0;
+}
+
+fact-viewer .fact-status[data-state="error"] {
+  color: var(--fact-error, #9b1c1c);
+  font-weight: 600;
+  border-left: 4px solid currentColor;
+  padding-left: 0.75rem;
 }
 
 fact-viewer[compact] {
@@ -542,15 +571,4 @@ fact-viewer[compact] {
 
 fact-viewer[compact] .fact-text {
   font-size: 1.1rem;
-}
-
-fact-viewer .fact-status[data-state="error"] {
-  color: #9b1c1c;
-  font-weight: 600;
-  border-left: 4px solid currentColor;
-  padding-left: 0.75rem;
-}
-
-:root[data-theme="dark"] fact-viewer .fact-status[data-state="error"] {
-  color: #ff9aa8;
 }
