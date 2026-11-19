@@ -509,3 +509,37 @@ body > footer :focus-visible {
     animation: none !important;
   }
 }
+
+/* ===== Fact viewer ===== */
+fact-viewer {
+  display: block;
+  max-width: 36rem;
+  margin-top: var(--space);
+  padding: calc(var(--space) * 1.5);
+  background: var(--color-surface);
+  border: 1px solid var(--color-accent-soft);
+  border-radius: var(--radius);
+}
+
+fact-viewer .fact-text {
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+  line-height: 1.4;
+}
+
+fact-viewer .fact-details,
+fact-viewer .fact-status {
+  color: var(--color-muted);
+}
+
+fact-viewer .fact-status {
+  margin: var(--space) 0 0;
+}
+
+fact-viewer[compact] {
+  padding: var(--space);
+}
+
+fact-viewer[compact] .fact-text {
+  font-size: 1.1rem;
+}

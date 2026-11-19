@@ -7,6 +7,7 @@
   <title>Homepage | Dzaiddin Khazani</title>
   <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href = "css/style.css">
+  <script src="scripts/fact-viewer.js" defer></script>
   <script src="scripts/theme.js"></script>
 </head>
 <body>
@@ -49,6 +50,16 @@
 
     </section>
 
+    <section id="fun-fact">
+      <h2>Useless Fact of the Moment</h2>
+
+      <button type="button" id="compact-toggle" aria-pressed="false" hidden>Compact view</button>
+
+      <fact-viewer>
+        <p>Facts need JavaScript. Please enable it to see this section.</p>
+      </fact-viewer>
+    </section>
+
     <section id="contact">
       <h2>Contact Me</h2>
 
@@ -82,6 +93,16 @@
     <p>&copy; 2026 Dzaiddin Khazani. All rights reserved.</p>
     <p><a href="#main">Back to top</a></p>
   </footer>
+
+  <script>
+  const toggle = document.querySelector("#compact-toggle");
+  const viewer = document.querySelector("fact-viewer");
+  toggle.hidden = false;
+  toggle.addEventListener("click", () => {
+    const isCompact = viewer.toggleAttribute("compact");
+    toggle.setAttribute("aria-pressed", String(isCompact));
+  });
+  </script>
 
 </body>
 </html>
