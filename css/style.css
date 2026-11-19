@@ -543,3 +543,14 @@ fact-viewer[compact] {
 fact-viewer[compact] .fact-text {
   font-size: 1.1rem;
 }
+
+fact-viewer .fact-status[data-state="error"] {
+  color: #9b1c1c;
+  font-weight: 600;
+  border-left: 4px solid currentColor;
+  padding-left: 0.75rem;
+}
+
+:root[data-theme="dark"] fact-viewer .fact-status[data-state="error"] {
+  color: #ff9aa8;
+}
