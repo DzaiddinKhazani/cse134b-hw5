@@ -1,16 +1,133 @@
 ---
+import Footer from "../components/Footer.astro";
 ---
 
+<!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content={Astro.generator} />
+  <meta name="description" content="Portfolio of game projects and media articles.">
+  <title>Homepage | Dzaiddin Khazani</title>
+  <link rel="icon" href="/images/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/css/style.css">
+  <script is:inline src="/scripts/fact-viewer.js" defer></script>
+  <script is:inline src="/scripts/theme.js"></script>
+</head>
+<body>
+
+  <header>
+    <h1>Dzaiddin Khazani</h1>
+
+    <nav aria-label="Primary">
+      <ul>
+        <li><a href="/" aria-current="page">Home</a></li>
+        <li><a href="/projects/">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main">
+
+    <section id="about">
+      <h2>About Me</h2>
+
+      <picture>
+        <source srcset="/images/headshot.webp" type="image/webp">
+        <img src="/images/headshot.jpg" alt="Headshot of Dzaiddin" width="300" height="300">
+      </picture>
+
+      <p>
+        Hi! My name is Dzaiddin bin Mohd Khazani, currently a student of UC San Diego. Thank you for checking my page, where I have showcases of the projects that I worked on in my spare time which mostly are game jam products, as well as some of my original writings.
+      </p>
+
+      <div role="group" aria-label="Explore my work">
+        <button type="button">Projects</button>
+        <button type="button">Writing</button>
+      </div>
+    </section>
+
+    <section id="fun-fact">
+      <h2>Useless Fact of the Moment</h2>
+
+      <button type="button" id="compact-toggle" aria-pressed="false" hidden>Compact view</button>
+
+      <fact-viewer>
+        <noscript><p>Enable JavaScript to load live data for this widget.</p></noscript>
+      </fact-viewer>
+    </section>
+
+    <section id="contact">
+      <h2>Contact Me</h2>
+
+      <form>
+        <fieldset>
+          <legend>Send me a message</legend>
+
+          <p>
+            <label for="contact-name">Name</label>
+            <input type="text" id="contact-name" name="name" autocomplete="name" required>
+          </p>
+
+          <p>
+            <label for="contact-email">Email address</label>
+            <input type="email" id="contact-email" name="email" autocomplete="email" required>
+          </p>
+
+          <p>
+            <label for="contact-message">Message</label>
+            <textarea id="contact-message" name="message" rows="6" cols="40" required></textarea>
+          </p>
+
+          <button type="submit">Send</button>
+        </fieldset>
+      </form>
+    </section>
+  </main>
+
+  <Footer />
+
+  <script is:inline>
+    (function () {
+      const KEY = "hw5-fact-panel-mode";
+      const viewer = document.querySelector("fact-viewer");
+      const toggle = document.querySelector("#compact-toggle");
+      if (!viewer || !toggle) return;
+
+      function readMode() {
+        try {
+          const value = localStorage.getItem(KEY);
+          return value === "compact" || value === "expanded" ? value : "expanded";
+        } catch (err) {
+          return "expanded";
+        }
+      }
+
+      function saveMode(mode) {
+        try {
+          localStorage.setItem(KEY, mode);
+        } catch (err) {
+          /* the change already took effect for this page */
+        }
+      }
+
+      function setMode(mode, persist) {
+        const compact = mode === "compact";
+        viewer.toggleAttribute("compact", compact);
+        toggle.setAttribute("aria-pressed", String(compact));
+        if (persist) saveMode(mode);
+      }
+
+      toggle.hidden = false;
+      setMode(readMode(), false);
+
+      toggle.addEventListener("click", () => {
+        setMode(viewer.hasAttribute("compact") ? "expanded" : "compact", true);
+      });
+    })();
+  </script>
+
+</body>
 </html>

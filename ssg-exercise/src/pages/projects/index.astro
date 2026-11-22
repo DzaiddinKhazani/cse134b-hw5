@@ -1,0 +1,73 @@
+---
+import Footer from "../../components/Footer.astro";
+
+// The individual project pages are not part of this exercise, so the cards
+// link to the main portfolio deployment. Update this if your URL differs.
+const portfolio = "https://dzaiddinkhazanihw4.netlify.app";
+---
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content={Astro.generator} />
+  <meta name="description" content="A collection of my game and app projects.">
+  <title>Projects | Dzaiddin Khazani</title>
+  <link rel="icon" href="/images/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/css/style.css">
+  <script is:inline src="/scripts/theme.js"></script>
+</head>
+<body>
+
+  <header>
+    <h1>Dzaiddin Khazani</h1>
+
+    <nav aria-label="Primary">
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/projects/" aria-current="page">Projects</a></li>
+        <li><a href="/#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="intro">
+      <h2><strong>Projects</strong></h2>
+
+      <p>A look at the games and apps I've designed and built.</p>
+
+      <p>
+        I've been a fan of video games ever since my family bought a PS2, and still continue playing
+        games as a hobby until today. That love evolved into wanting to tell my own stories in
+        this amazing way that I start to join game jams organized in my university. Attached are some
+        of the projects that I'm proud to say that I worked on!
+      </p>
+    </section>
+
+    <div class="card-grid">
+
+      <article class="card">
+        <a href={`${portfolio}/projects/fishing-with-goober.html`}>
+          <img src="/images/fishing-with-goober-thumb.png" alt="Screenshot of Fishing with Goober" width="320" height="180" loading="lazy">
+          <h3>Fishing with Goober</h3>
+        </a>
+        <p>For Tritonware Spring '25, I helped develop a fun physics-based game about catching flying fish.</p>
+      </article>
+
+      <article class="card">
+        <a href={`${portfolio}/projects/bedtime-beats.html`}>
+          <img src="/images/bedtime-beats-thumb.png" alt="Screenshot of Bedtime Beats" width="320" height="180" loading="lazy">
+          <h3>Bedtime Beats</h3>
+        </a>
+        <p>For Tritonware Fall '24, I worked on an amazing rhythm game about a child trying to finish the last level before going to bed.</p>
+      </article>
+
+    </div>
+  </main>
+
+  <Footer />
+
+</body>
+</html>
