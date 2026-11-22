@@ -1,0 +1,21 @@
+{
+  "name": "cse134b-hw5",
+  "version": "1.0.0",
+  "description": "| Field                | Value                                                   |\r | ---------------------|---------------------------------------------------------|\r | Repository URL       | https://www.github.com/DzaiddinKhazani/cse134b-hw4       |\r | Website URL          | https://dzaiddinkhazanihw4.netlify.app/                 |\r | form-no-js           | https://dzaiddinkhazanihw4.netlify.app/form-no-js.html  |\r | form-with-js         | https://dzaiddinkhazanihw4.netlify.app/form-with-js.html|",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DzaiddinKhazani/cse134b-hw5.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/DzaiddinKhazani/cse134b-hw5/issues"
+  },
+  "homepage": "https://github.com/DzaiddinKhazani/cse134b-hw5#readme"
+}
